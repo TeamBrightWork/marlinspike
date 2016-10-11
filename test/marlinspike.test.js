@@ -24,13 +24,17 @@ describe('Marlinspike', () => {
       assert(_.isFunction(hook.initialize))
       assert(_.isObject(hook.routes))
     })
-    it('should extend controllers', () => {
+    it('should extend controllers', done => {
       let HookDefinition = Marlinspike.createSailsHook(TestHook)
       let hook = HookDefinition(global.sails)
 
+      console.log('HOOK', hook);
       hook.configure()
 
-      assert(global.sails.controllers.test)
+      global.sails.after('hook:testhook:configured', () => {
+        assert(global.sails.controllers.test)
+        done()
+      })
     })
     it('should extend services', () => {
       let HookDefinition = Marlinspike.createSailsHook(TestHook)
