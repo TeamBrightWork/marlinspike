@@ -5,6 +5,7 @@
   "main": "dist/marlinspike.js",
   "scripts": {
     "test": "gulp && mocha --reporter spec --compilers js:babel/register",
+    "preinstall": "gulp",
     "prepublish": "gulp"
   },
   "repository": {
